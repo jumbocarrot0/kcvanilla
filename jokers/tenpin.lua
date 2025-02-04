@@ -1,6 +1,5 @@
 SMODS.Joker {
     key = "tenpin",
-    name = "Ten-Pin",
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
@@ -65,6 +64,13 @@ SMODS.Joker {
                     card_eval_status_text(card, 'extra', nil, nil, nil, {
                         message = localize('k_reset')
                     });
+                    G.E_MANAGER:add_event(Event({
+                        trigger = 'immediate',
+                        func = function()
+                            card.ability.x_mult = 1
+                            return true
+                        end
+                    }))
                     G.E_MANAGER:add_event(Event({
                         trigger = 'immediate',
                         func = function()

@@ -8,7 +8,6 @@
 
 SMODS.Joker {
     key = "powergrid",
-    name = "Power Grid",
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
