@@ -5,8 +5,8 @@ SMODS.Joker {
         x = 0,
         y = kcv_getJokerAtlasIndex('rakugo')
     },
-    rarity = 2,
-    cost = 5,
+    rarity = 1,
+    cost = 4,
     unlocked = true,
     discovered = false,
     eternal_compat = true,
