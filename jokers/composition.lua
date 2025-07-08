@@ -63,17 +63,8 @@ SMODS.Joker {
 
             if effect.chips == 0 and effect.mult == 0 then
                 return
-            end
-
-            return {
-                chip_mod = effect.chips,
-                message = localize {
-                    type = 'variable',
-                    key = 'a_chips',
-                    vars = {effect.chips}
-                },
-                colour = G.C.CHIPS,
-                extra = {
+            elseif effect.chips == 0 then
+                return {
                     mult_mod = effect.mult,
                     message = localize {
                         type = 'variable',
@@ -82,7 +73,36 @@ SMODS.Joker {
                     },
                     colour = G.C.MULT
                 }
-            }
+            elseif effect.mult == 0 then
+                return {
+                    chip_mod = effect.chips,
+                    message = localize {
+                        type = 'variable',
+                        key = 'a_chips',
+                        vars = {effect.chips}
+                    },
+                    colour = G.C.CHIPS
+                }
+            else
+                return {
+                    chip_mod = effect.chips,
+                    message = localize {
+                        type = 'variable',
+                        key = 'a_chips',
+                        vars = {effect.chips}
+                    },
+                    colour = G.C.CHIPS,
+                    extra = {
+                        mult_mod = effect.mult,
+                        message = localize {
+                            type = 'variable',
+                            key = 'a_mult',
+                            vars = {effect.mult}
+                        },
+                        colour = G.C.MULT
+                    }
+                }
+            end
         end
     end
 }

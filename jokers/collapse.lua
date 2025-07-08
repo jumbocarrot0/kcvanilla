@@ -46,6 +46,9 @@ SMODS.Joker {
                 for k, v in pairs(G.P_CENTERS) do
                     if v.name == planet.ability.name then
                         G.GAME.used_jokers[k] = nil
+
+                        -- Remove key from pool the "proper" way
+                        G.GAME.banned_keys[k] = true
                     end
                 end
 
