@@ -21,8 +21,8 @@ function kcv_log(str)
     sendInfoMessage(str, "KCVanilla")
 end
 
-local kcv_jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'drummajor', 'energy', 'fortunecookie', 'guard',
-                             'irish', 'composition', 'powergrid', 'rakugo', 'rats', 'redenvelope', 'robo', 'handy',
+local kcv_jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'energy', 'fortunecookie', 'guard', 'irish',
+                             'composition', 'powergrid', 'rakugo', 'rats', 'redenvelope', 'robo', 'scapegoat', 'handy',
                              'squid', 'tenpin'}
 
 function kcv_getJokerAtlasIndex(jokerKey)
@@ -47,35 +47,40 @@ function kcv_common_joker_count()
     return count
 end
 
-NFS.load(SMODS.current_mod.path .. 'jokers/composition.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/fortunecookie.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/tenpin.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/robo.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/squid.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/redenvelope.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/swiss.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/chan.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/5day.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/handy.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/energy.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/powergrid.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/guard.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/collapse.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/irish.lua')()
--- NFS.load(SMODS.current_mod.path .. 'jokers/drummajor.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/rakugo.lua')()
--- NFS.load(SMODS.current_mod.path .. 'jokers/rats.lua')()
+assert(SMODS.load_file('jokers/composition.lua'))()
+assert(SMODS.load_file('jokers/fortunecookie.lua'))()
+assert(SMODS.load_file('jokers/tenpin.lua'))()
+assert(SMODS.load_file('jokers/robo.lua'))()
+assert(SMODS.load_file('jokers/squid.lua'))()
+assert(SMODS.load_file('jokers/redenvelope.lua'))()
+assert(SMODS.load_file('jokers/swiss.lua'))()
+assert(SMODS.load_file('jokers/chan.lua'))()
+assert(SMODS.load_file('jokers/5day.lua'))()
+assert(SMODS.load_file('jokers/handy.lua'))()
+assert(SMODS.load_file('jokers/energy.lua'))()
+assert(SMODS.load_file('jokers/powergrid.lua'))()
+assert(SMODS.load_file('jokers/guard.lua'))()
+assert(SMODS.load_file('jokers/collapse.lua'))()
+assert(SMODS.load_file('jokers/irish.lua'))()
+assert(SMODS.load_file('jokers/rakugo.lua'))()
+assert(SMODS.load_file('jokers/rats.lua'))()
+assert(SMODS.load_file('jokers/scapegoat.lua'))()
 
 function G.FUNCS.kcv_discover_all()
     for _, key in ipairs(kcv_jokerAtlasOrder) do
         local card = G.P_CENTERS["j_kcvanilla_" .. key]
-        discover_card(card)
+        if card then
+            discover_card(card)
+        end
     end
 end
+
 function G.FUNCS.kcv_undiscover_all()
     for _, key in ipairs(kcv_jokerAtlasOrder) do
         local card = G.P_CENTERS["j_kcvanilla_" .. key]
-        kcv_undiscover(card)
+        if card then
+            kcv_undiscover(card)
+        end
     end
 end
 
@@ -107,7 +112,7 @@ SMODS.current_mod.config_tab = function()
             label = {"Discover all"},
             button = 'kcv_discover_all'
         }), UIBox_button({
-            label = {"Uniscover all"},
+            label = {"Undiscover all"},
             button = 'kcv_undiscover_all'
         })}
     }
