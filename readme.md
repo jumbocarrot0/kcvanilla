@@ -1,26 +1,8 @@
-# KCVanilla
+# KCVanilla Fork
 
-Balatro content mod. A small pack of plausible Jokers with a faithful art style. Intended to look and feel as vanilla as possible.
+This is a fork of KCVanilla that I used for a PR into that mod. This branch is specifically for some stuff that didn't get accepted but I like so keep around for my sake.
 
-[Website](https://kcgidw.github.io/kcvanilla/)
-
-[Balatro mods wiki page](https://balatromods.miraheze.org/wiki/KCVanilla)
-
-Jokers are unlocked by default. To undiscover/rediscover all Jokers: In the game, go to Mods > KCVanilla > Config
-
-Feedback? Log an issue or hmu on the [KCVanilla thread](https://discord.com/channels/1116389027176787968/1259676012086689804) in the Balatro Discord server.
-
-## Installation
-
-Requires [Steamodded](https://github.com/Steamopollys/Steamodded)
-
-Unzip the [latest release](https://github.com/kcgidw/kcvanilla/releases) (or clone the repo) into your Mods/ folder.
-
-## Contributing
-
-PRs are welcome. Please keep PRs scoped to one goal.
-
-Localization PRs are appreciated! Please note that I can't maintain translations myself and they may become outdated over time.
+Not an ideal version for others to use. [Check out the actual mod here](https://github.com/kcgidw/kcvanilla).
 
 ## Credits and thanks
 
