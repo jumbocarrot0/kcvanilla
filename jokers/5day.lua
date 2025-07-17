@@ -1,5 +1,7 @@
 local function kcv_rank_up_discreetly(card)
-    card.kcv_ignore_debuff_check = true
+    if card.ability then -- Preempt any weird crashes
+        card.ability.played_this_ante = false
+    end
     card.kcv_ranked_up_discreetly = true
 
     local old_rank = SMODS.Ranks[card.base.value]
@@ -96,7 +98,7 @@ SMODS.Joker {
                             if other_c_3.kcv_display_rank.card_key == SMODS.Ranks[other_c_3.base.value].card_key then
                                 -- cleanup
                                 other_c_3.kcv_ranked_up_discreetly = nil
-                                other_c_3.kcv_ignore_debuff_check = nil
+                                other_c_3.ability.played_this_ante = true
                                 other_c_3.kcv_display_rank = nil
                             end
                             return true
