@@ -32,9 +32,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        -- TODO: How should this behave with Midas?
-        -- kcv_forecast_event is like `before` but occurs just prior.
-        -- Using `before` directly causes weird *player-perceived* desyncs between kcv_rank_up_discreetly, E_MANAGER events, and other calcs 
+        -- kcv_forecast_event needs an indivudal event because ranking up has weird timing
         if context.kcv_forecast_event and context.scoring_hand then
             if next(context.poker_hands["Straight"]) then
                 for i, other_c in ipairs(context.scoring_hand) do
@@ -83,7 +81,6 @@ SMODS.Joker {
                                 -- was complete, but another 5-day joker is targeting this card
                                 return true
                             end
-                            -- kcv_log(other_c_3.base.id .. ' - ' .. other_c_3.kcv_display_rank)
                             other_c_3.kcv_display_rank = SMODS.Ranks[other_c_3.kcv_display_rank.next[1]]
 
                             -- Copying method SMODs uses

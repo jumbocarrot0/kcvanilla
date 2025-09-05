@@ -14,7 +14,7 @@ return {
             },
             j_kcvanilla_collapse = {
                 name = "Cosmic Collapse",
-                text = {'At end of round, held {C:planet}Planet{}', 'cards each have {C:green}#1# in 2{} chance',
+                text = {'At end of round, held {C:planet}Planet{}', 'cards each have {C:green}#1# in #2#{} chance',
                         'to transform into a {C:spectral}Black Hole{}'}
             },
             j_kcvanilla_composition = {
@@ -61,14 +61,13 @@ return {
             },
             j_kcvanilla_robo = {
                 name = "Jimbot",
-                text = {"Gains the {C:chips}Chip{} value of", "the first scored card",
-                        "ranked {C:attention}2-10{} each round",
+                text = {"This gains the {C:chips}Chip{} value", "of the first scoring", "numbered card each round",
                         "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"}
             },
             j_kcvanilla_scapegoat = {
                 name = "Scapegoat",
                 text = {'If {C:attention}first discard{} of round', 'has only {C:attention}1{} card, destroy',
-                        'it and give its {C:chips}Chips{} to', 'a random card in hand'}
+                        'it and add its {C:chips}Chip{} value', 'to a random card in hand'}
             },
             j_kcvanilla_squid = {
                 name = "Squid",
@@ -91,9 +90,14 @@ return {
             },
             j_kcvanilla_rats = {
                 name = "Rats!",
-                text = {'When round begins, {C:attention}destroy{}', 'a random card in hand',
+                text = {'When round begins, destroy', 'a random card in hand',
                         'and {C:attention}duplicate{} this Joker', '{C:inactive}(Must have room,',
                         '{C:inactive}removes {C:dark_edition}Negative{C:inactive} from copy)'}
+            },
+            j_kcvanilla_loosetooth = {
+                name = "Loose Tooth",
+                text = {'Create a {C:tarot}Tarot{} card if', 'played hand has a', '{C:attention}non-scoring Ace{}',
+                        '{C:inactive}(Must have room){}'}
             }
         }
     },
