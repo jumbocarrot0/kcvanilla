@@ -29,5 +29,39 @@ SMODS.Joker {
                 end
             end
         end
+    end,
+
+
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            text = {
+                { text = "(" },
+                { ref_table = "card.joker_display_values", ref_value = "four", colour = G.C.ORANGE },
+                { text = "," },
+                { ref_table = "card.joker_display_values", ref_value = "five", colour = G.C.ORANGE },
+                { text = "," },
+                { ref_table = "card.joker_display_values", ref_value = "six", colour = G.C.ORANGE },
+                { text = "," },
+                { ref_table = "card.joker_display_values", ref_value = "seven", colour = G.C.ORANGE },
+                { text = "," },
+                { ref_table = "card.joker_display_values", ref_value = "eight", colour = G.C.ORANGE },
+                { text = ")" },
+            },
+            text_config = { colour = G.C.GREY, scale = 0.5 },
+            reminder_text = {
+                { text = "(" },
+                { ref_table = "card.joker_display_values", ref_value = "localized_text", colour = G.C.ORANGE },
+                { text = ")" },
+            },
+            calc_function = function(card)
+                card.joker_display_values.four = localize("4", 'ranks')
+                card.joker_display_values.five = localize("5", 'ranks')
+                card.joker_display_values.six = localize("6", 'ranks')
+                card.joker_display_values.seven = localize("7", 'ranks')
+                card.joker_display_values.eight = localize("8", 'ranks')
+                card.joker_display_values.localized_text = localize("Straight", 'poker_hands')
+            end
+        }
     end
 }

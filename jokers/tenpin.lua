@@ -13,7 +13,7 @@ SMODS.Joker {
     perishable_compat = true,
     blueprint_compat = true,
     config = {
-        x_mult = 1,
+        xmult = 1,
         hands_remaining = 0
     },
     loc_vars = function(self, info_queue, card)
@@ -42,29 +42,49 @@ SMODS.Joker {
             end
             if has_10 then
                 card.ability.hands_remaining = 2
-                card.ability.x_mult = 2
-                card_eval_status_text(card, 'extra', nil, nil, nil, {
+                card.ability.xmult = 2
+                return {
                     message = localize('k_active_ex')
-                });
+                }
             else
                 card.ability.hands_remaining = card.ability.hands_remaining - 1
                 if card.ability.hands_remaining > 0 then
-                    card_eval_status_text(card, 'extra', nil, nil, nil, {
-                        message = card.ability.hands_remaining .. ' remaining'
-                    });
-                elseif card.ability.x_mult == 2 then
-                    card_eval_status_text(card, 'extra', nil, nil, nil, {
-                        message = localize('k_reset')
-                    });
+                    return {
+                        message = localize{type='variable',key='a_remaining',vars={card.ability.hands_remaining}}
+                    }
+                elseif card.ability.xmult == 2 then
                     G.E_MANAGER:add_event(Event({
                         trigger = 'immediate',
                         func = function()
-                            card.ability.x_mult = 1
+                            card.ability.xmult = 1
                             return true
                         end
                     }))
+                    return {
+                        message = localize('k_reset')
+                    }
                 end
             end
         end
+        if context.joker_main and card.ability.xmult > 1 then
+            return {
+                xmult = card.ability.xmult,
+            }
+        end
+    end,
+
+
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            text = {
+                {
+                    border_nodes = {
+                        { text = "X" },
+                        { ref_table = "card.ability", ref_value = "xmult", retrigger_type = "exp" }
+                    }
+                }
+            },
+        }
     end
 }

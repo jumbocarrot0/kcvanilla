@@ -70,5 +70,21 @@ SMODS.Joker {
                 })
             end
         end
+    end,
+
+
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            reminder_text = {
+                { text = "(" },
+                { ref_table = "card.joker_display_values", ref_value = "active" },
+                { text = ")" },
+            },
+            calc_function = function(card)
+                card.joker_display_values.active = card.ability.progress >= card.ability.required_progress and
+                    localize("k_active") or (card.ability.progress .. "/" .. card.ability.required_progress)
+            end
+        }
     end
 }

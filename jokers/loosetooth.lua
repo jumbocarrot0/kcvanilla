@@ -65,5 +65,24 @@ SMODS.Joker {
                 }
             end
         end
+    end,
+
+
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            text = {
+                { text = "+" },
+                { ref_table = "card.joker_display_values", ref_value = "count", retrigger_type = "mult" }
+            },
+            text_config = { colour = G.C.SECONDARY_SET.Tarot },
+            calc_function = function(card)
+                local text, _, scoring_hand = JokerDisplay.evaluate_hand()
+                local has_nonscoring_ace = get_has_nonscoring_ace(JokerDisplay.current_hand, scoring_hand)
+
+                local active = text ~= "Unknown" and has_nonscoring_ace
+                card.joker_display_values.count = active and 1 or 0
+            end
+        }
     end
 }
