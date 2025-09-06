@@ -65,30 +65,39 @@ SMODS.Joker {
             local mult_message = nil
             if effect.mult > 0 then
                 mult_message = {
-                    mult_mod = effect.mult,
-                    message = localize {
-                        type = 'variable',
-                        key = 'a_mult',
-                        vars = {effect.mult}
-                    },
-                    colour = G.C.MULT
+                    mult = effect.mult,
                 }
             end
             
             if effect.chips > 0 then
                 return {
-                    chip_mod = effect.chips,
-                    message = localize {
-                        type = 'variable',
-                        key = 'a_chips',
-                        vars = {effect.chips}
-                    },
-                    colour = G.C.CHIPS,
+                    chips = effect.chips,
                     extra = mult_message
                 }
             else
                 return mult_message
             end
         end
+    end,
+
+
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            text = {
+                { text = "+", colour = G.C.CHIPS },
+                { ref_table = "card.joker_display_values", ref_value = "chips", retrigger_type = "mult", colour = G.C.CHIPS },
+                { text = " " },
+                { text = "+", colour = G.C.MULT },
+                { ref_table = "card.joker_display_values", ref_value = "mult", retrigger_type = "mult", colour = G.C.MULT }
+            },
+            calc_function = function(card)
+                local target_card = card
+                local effect = kcv_composition_calc_effect(target_card, card.ability.extra.mult, card.ability.extra.chips)
+
+                card.joker_display_values.chips = effect.chips
+                card.joker_display_values.mult = effect.mult
+            end,
+        }
     end
 }

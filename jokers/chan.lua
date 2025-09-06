@@ -26,28 +26,34 @@ SMODS.Joker {
             local upgrade_amt = kcv_common_joker_count() * 2
             if upgrade_amt > 0 then
                 card.ability.mult = card.ability.mult + upgrade_amt
-                card_eval_status_text(card, 'extra', nil, nil, nil, {
+                return {
                     message = localize {
                         type = 'variable',
                         key = 'a_mult',
                         vars = {upgrade_amt}
                     },
-                    colour = G.C.RED,
-                    card = card
-                })
+                    colour = G.C.RED
+                }
             end
         end
         if context.joker_main then
             if card.ability.mult > 0 then
                 return {
-                    message = localize {
-                        type = 'variable',
-                        key = 'a_mult',
-                        vars = {card.ability.mult}
-                    },
-                    mult_mod = card.ability.mult
+                    mult = card.ability.mult
                 }
             end
         end
+    end,
+
+
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            text = {
+                { text = "+" },
+                { ref_table = "card.ability", ref_value = "mult", retrigger_type = "mult" }
+            },
+            text_config = { colour = G.C.MULT },
+        }
     end
 }

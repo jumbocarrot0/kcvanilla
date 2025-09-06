@@ -45,14 +45,20 @@ SMODS.Joker {
         end
         if context.joker_main then
             return {
-                message = localize {
-                    type = 'variable',
-                    key = 'a_chips',
-                    vars = {card.ability.chips}
-                },
-                chip_mod = card.ability.chips,
-                colour = G.C.CHIPS
+                chips = card.ability.chips
             }
         end
+    end,
+
+
+    joker_display_def = function(JokerDisplay)
+        ---@type JDJokerDefinition
+        return {
+            text = {
+                { text = "+" },
+                { ref_table = "card.ability", ref_value = "chips", retrigger_type = "chips" }
+            },
+            text_config = { colour = G.C.CHIPS },
+        }
     end
 }
