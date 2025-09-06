@@ -39,17 +39,17 @@ SMODS.Joker {
         ---@type JDJokerDefinition
         return {
             text = {
-                { ref_table = "card.joker_display_values", ref_value = "clubs", retrigger_type = "exp", colour = G.C.SUITS.Clubs },
-                { text = " " },
-                { ref_table = "card.joker_display_values", ref_value = "lucky_card", retrigger_type = "exp", colour = G.C.IMPORTANT },
-                { text = " " },
                 {
                     border_nodes = {
                         { ref_table = "card.ability", ref_value = "factor", retrigger_type = "exp" },
                         { text = "X" }
                     },
                     border_colour = G.C.CHANCE
-                }
+                },
+                { text = " " },
+                { ref_table = "card.joker_display_values", ref_value = "clubs", retrigger_type = "exp", colour = G.C.SUITS.Clubs },
+                { text = " " },
+                { ref_table = "card.joker_display_values", ref_value = "lucky_card", retrigger_type = "exp", colour = G.C.IMPORTANT },
             },
             calc_function = function(card)
                 card.joker_display_values.lucky_card = localize { type = 'name_text', set = 'Enhanced', key = 'm_lucky' }
